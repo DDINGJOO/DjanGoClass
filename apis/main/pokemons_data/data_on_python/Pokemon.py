@@ -69,7 +69,7 @@ class Pokemons:
         for pokemon in self.pokemons:
             if pokemon.number == number:
                 return pokemon.info_pokemon()
-        return "No Pokémon found with this number."
+        return "No Pokemon found with this number."
 
 
 
@@ -80,7 +80,7 @@ class Pokemons:
                     setattr(pokemon, attribute, new_value)
                     return pokemon.info_pokemon()
                 return f"Attribute '{attribute}' not found."
-        return "No Pokémon found with this number."
+        return "No Pokemon found with this number."
 
 
 
@@ -89,7 +89,7 @@ class Pokemons:
             if pokemon.number == number:
                 del self.pokemons[i]
                 return f"Pokémon with number {number} deleted successfully."
-        return "No Pokémon found with this number."
+        return "No Pokemon found with this number."
 
     def get_all_pokemons(self):
         return [pokemon.info_pokemon() for pokemon in self.pokemons]
