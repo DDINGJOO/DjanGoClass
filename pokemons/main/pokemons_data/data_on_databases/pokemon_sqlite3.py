@@ -1,6 +1,6 @@
-from apis.main.pokemons_data.data_on_databases.pokemon_database_interface import pokemon_datebase
+from pokemons.main.pokemons_data.data_on_databases.pokemon_database_interface import pokemon_datebase
 import sqlite3
-
+import os
 
 
 
@@ -11,7 +11,7 @@ class pokemon_sqlite3(pokemon_datebase):
         super().__init__()
 
 
-        self.DB_NAME = "pokemon.db"
+        self.DB_PATH = os.getenv("POKEMON_DB_PATH", "default.db")
         self.COMMANDS = \
             {"create_pokemon_table_query":
                  """
@@ -37,7 +37,7 @@ class pokemon_sqlite3(pokemon_datebase):
 
 
     def setup_pokemon_database(self):
-        with sqlite3.connect(self.DB_NAME) as conn:
+        with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(self.COMMANDS.get("create_pokemon_table_query"))
             conn.commit()
@@ -45,7 +45,7 @@ class pokemon_sqlite3(pokemon_datebase):
 
 
     def insert_pokemons_data(self,poke_list):
-        with sqlite3.connect(self.DB_NAME) as conn:
+        with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.executemany(
                 self.COMMANDS.get("insert_pokemons_data_query"),
@@ -55,7 +55,7 @@ class pokemon_sqlite3(pokemon_datebase):
 
 
     def fetch_all_pokemons(self):
-        with sqlite3.connect(self.DB_NAME) as conn:
+        with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(self.COMMANDS.get("fetch_pokemons_data_query"))
             data = cursor.fetchall()
@@ -63,7 +63,7 @@ class pokemon_sqlite3(pokemon_datebase):
 
 
     def fetch_pokemon_by_number(self, number):
-        with sqlite3.connect(self.DB_NAME) as conn:
+        with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(self.COMMANDS.get("fetch_pokemon_by_number_query"), (number,))
             data = cursor.fetchone()

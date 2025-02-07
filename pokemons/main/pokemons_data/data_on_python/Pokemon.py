@@ -1,6 +1,6 @@
 import requests
 from pprint import pprint
-from apis.main.config.logConfig import log_message
+from pokemons.main.config.logConfig import log_message
 import os
 
 
