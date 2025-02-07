@@ -20,15 +20,11 @@ class pokemon_datebase:
     def delete_pokemon_by_number(self, number):
         pass
 
-    def search_pokemon_by_type(self, type):
-        pass
-
-    def search_pokemon_by_weakness(self, weakness):
-        pass
-
-    def sort_pokemons_by_name_asc(self):
+    def fetch_pokemons_data_query_sorted(self):
         pass
 
 
 
-    ##TODO : ImplList  A Pokemon pokemons_data Insert
+
+
+    ##TODO : ImplList  A Pokemon poke_data Insert
