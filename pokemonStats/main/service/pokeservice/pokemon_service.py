@@ -1,8 +1,8 @@
 from common.loggingManeger.logConfig import log_message
 from pokemonStats.main.data.poke_data.data_on_python.Pokemon import Pokemon, Pokemons
-from pokemonStats.main.data.poke_data.data_on_databases.database_selector import database_manager
+from common.database.database_selector import database_manager
 
-from pprint import pprint
+
 class poke_service:
     def __init__(self):
         self.db_manager = database_manager().get_database()
