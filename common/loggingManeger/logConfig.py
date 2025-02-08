@@ -1,5 +1,4 @@
 import logging
-from datetime import datetime
 
 
 # 로그 설정

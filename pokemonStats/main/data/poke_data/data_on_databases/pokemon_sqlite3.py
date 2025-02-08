@@ -1,4 +1,4 @@
-from pokemons.main.data.poke_data.data_on_databases.pokemon_database_interface import pokemon_datebase
+from pokemonStats.main.data.poke_data.data_on_databases.pokemon_database_interface import pokemon_datebase
 import sqlite3
 import os
 
@@ -111,8 +111,11 @@ if __name__ == "__main__":
         {"Name": "squirtle", "Number": 7, "Hp": 48, "Attack": 65, "Defense": 65},
         {"Name": "charmander", "Number": 4, "Hp": 39, "Attack": 52, "Defense": 43},
     ]
-    database.insert_pokemons_data(pokemon_data)
 
+
+
+
+    database.insert_pokemons_data(pokemon_data)
     database.delete_pokemon_by_number(25)
     print(database.fetch_pokemon_by_number(25))
     print(database.fetch_all_pokemons())

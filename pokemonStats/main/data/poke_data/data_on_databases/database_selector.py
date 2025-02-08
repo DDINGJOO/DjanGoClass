@@ -1,5 +1,5 @@
 import os
-from pokemons.main.config.logConfig import log_message
+from common.loggingManeger.logConfig import log_message
 
 class database_manager:
     def __init__(self):
@@ -8,7 +8,7 @@ class database_manager:
     def get_database(self):
         if self.db_name == "SQLite3":
             log_message("info", "database_manager", "using SQLite3 database")
-            from pokemons.main.data.poke_data.data_on_databases.pokemon_sqlite3 import pokemon_sqlite3
+            from pokemonStats.main.data.poke_data.data_on_databases.pokemon_sqlite3 import pokemon_sqlite3
             pokemon_sqlite3().setup_pokemon_database()
             return pokemon_sqlite3()
 
