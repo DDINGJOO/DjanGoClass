@@ -1,11 +1,14 @@
+from pprint import pprint
+
 from common.loggingManeger.logConfig import log_message
-from pokemonStats.main.data.poke_data.data_on_python.Pokemon import Pokemon, Pokemons
-from common.database.database_selector import database_manager
+from pokeDex.entity.Pokemon import Pokemon, Pokemons
+from common.database.database_selector import DataBaseSelector
 
 
-class poke_service:
+
+class PokeDexService:
     def __init__(self):
-        self.db_manager = database_manager().get_database()
+        self.db_manager = DataBaseSelector().get_database()
 
 
     def insert_pokemons_by_number_until_number(self, number):
@@ -18,21 +21,20 @@ class poke_service:
 
     def get_pokemon_by_id(self, id):
         raw_pokemon = self.db_manager.fetch_pokemon_by_number(id)
-        return self._format_pokemon(raw_pokemon)
+        return self.execute_dict(raw_pokemon)
+
 
     def get_pokemon_by_name(self, name):
         raw_pokemon = self.db_manager.fetch_pokemon_by_name(name)
-        return self._format_pokemon(raw_pokemon)
-
-
+        return self.execute_dict(raw_pokemon)
 
     def get_pokemons_by_number_ASC(self):
         raw_pokemons = self.db_manager.fetch_all_pokemons()
-        return [self._format_pokemon(p) for p in raw_pokemons]
+        return [self.execute_dict(p) for p in raw_pokemons]
 
     def get_pokemons_by_name_ASC(self):
         raw_pokemons = self.db_manager.fetch_pokemons_data_query_sorted()
-        return [self._format_pokemon(p) for p in raw_pokemons]
+        return [self.execute_dict(p) for p in raw_pokemons]
 
     def _format_pokemon(self, raw_pokemon):
         if raw_pokemon:
@@ -45,12 +47,29 @@ class poke_service:
             }
         return None
 
+    def execute_dict(self, raw_pokemon):
+        if raw_pokemon:
+            return self._format_pokemon(raw_pokemon)
+
+
+        else:
+            log_message("error","poke_service.execute", "No data founded")
+            return "No data founded"
+
 
 if __name__ == '__main__':
-    poke_service = poke_service()
-    poke_service.insert_pokemons_by_number_until_number(11)
+    poke_service = PokeDexService()
+    # poke_service.insert_pokemons_by_number_until_number(122222221)
     pokemon = poke_service.get_pokemon_by_id(1)
-    print(poke_service.get_pokemon_by_name("charizard"))
+    print(pokemon)
+    print(poke_service.get_pokemon_by_name("bulbasaur"))
+    pprint(poke_service.get_pokemons_by_number_ASC())
+    pprint(poke_service.get_pokemons_by_name_ASC())
+
+    # pokemon = poke_service.insert_pokemons_by_number_until_number(10)
+
+
+
 
 
 

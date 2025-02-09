@@ -1,4 +1,4 @@
-class pokemon_datebase:
+class PokeDexDatabaseInterface:
     def setup_pokemon_database(self):
         pass
 
@@ -27,4 +27,4 @@ class pokemon_datebase:
 
 
 
-    ##TODO : ImplList  A Pokemon poke_data Insert
+    ##TODO : ImplList  A Pokemon repository Insert

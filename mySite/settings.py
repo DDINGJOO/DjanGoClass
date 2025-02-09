@@ -15,7 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(os.path.join(BASE_DIR, "pokemonStats"))
+sys.path.append(os.path.join(BASE_DIR, "pokeDex"))
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -23,7 +23,7 @@ sys.path.append(os.path.join(BASE_DIR, "pokemonStats"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'pokemonStats/main/pokemon.db'),
+        'NAME': os.path.join(BASE_DIR, 'pokeDex/main/pokemon.db'),
     }
 }
 

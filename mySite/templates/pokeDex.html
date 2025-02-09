@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon List</title>
+    <title>pokeDex</title>
     <link rel="stylesheet" href="/static/css/style.css">  <!-- CSS 연결 -->
 </head>
 <body>
-<h1>Pokemon List</h1>
+<h1>pokeDex</h1>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -16,9 +16,9 @@
         <th>Attack</th>
         <th>Defense</th>
     </tr>
-    {% for pokemon in pokemons %}
-        <tr>
+    <tr>
             <td>{{ pokemon.id }}</td>
+            <td>{{ pokeimages.image}}</td>
             <td>{{ pokemon.name }}</td>
             <td>{{ pokemon.hp }}</td>
             <td>{{ pokemon.attack }}</td>

@@ -1,7 +1,7 @@
-from pokemonStats.main.service.pokeservice.pokemon_service import  poke_service
+from pokeDex.service import  PokeDexService
 from pprint import pprint
 if __name__ == "__main__":
-    poke_service = poke_service()
+    poke_service = PokeDexService()
     # poke_service.insert_pokemons_by_number_until_number(20)
     pprint(poke_service.get_pokemon_by_id(3))
     pprint(poke_service.get_pokemons_by_name_ASC())

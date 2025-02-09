@@ -1,11 +1,11 @@
-from pokemonStats.main.data.poke_data.data_on_databases.pokemon_database_interface import pokemon_datebase
+from pokeDex.repository.poke_dex_interface import PokeDexDatabaseInterface
 import sqlite3
 import os
 
 
 
 
-class pokemon_sqlite3(pokemon_datebase):
+class PokeDexSqlite3(PokeDexDatabaseInterface):
 
     def __init__(self):
         super().__init__()
@@ -69,6 +69,13 @@ class pokemon_sqlite3(pokemon_datebase):
             cursor.execute(self.COMMANDS.get("delete_pokemon_by_number_query"), (number,))
             conn.commit()
 
+        def fetch_pokemons_data_query_sorted(self):
+            with sqlite3.connect(self.DB_PATH) as conn:
+                cursor = conn.cursor()
+                cursor.execute(self.COMMANDS.get("fetch_pokemons_data_query_sorted"))
+                data = cursor.fetchall()
+                return data
+
 
     def fetch_all_pokemons(self):
         with sqlite3.connect(self.DB_PATH) as conn:
@@ -91,6 +98,8 @@ class pokemon_sqlite3(pokemon_datebase):
             cursor.execute(self.COMMANDS.get("fetch_pokemon_by_name_query"), (name,))
             data = cursor.fetchone()
             return data
+
+
     def fetch_pokemons_data_query_sorted(self):
         with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
@@ -103,16 +112,17 @@ class pokemon_sqlite3(pokemon_datebase):
 
 if __name__ == "__main__":
 
-    database = pokemon_sqlite3()
+    database = PokeDexSqlite3()
     database.setup_pokemon_database()
+
+
     # 데이터 입력
     pokemon_data = [
         {"Name": "pikachu", "Number": 25, "Hp": 35, "Attack": 55, "Defense": 40},
         {"Name": "squirtle", "Number": 7, "Hp": 48, "Attack": 65, "Defense": 65},
         {"Name": "charmander", "Number": 4, "Hp": 39, "Attack": 52, "Defense": 43},
+        {"Name": "chArmAnder", "Number": 4, "Hp": 40, "Attack": 52, "Defense": 43},
     ]
-
-
 
 
     database.insert_pokemons_data(pokemon_data)

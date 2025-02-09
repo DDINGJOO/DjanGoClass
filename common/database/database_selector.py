@@ -1,16 +1,16 @@
 import os
 from common.loggingManeger.logConfig import log_message
 
-class database_manager:
+class DataBaseSelector:
     def __init__(self):
-        self.db_name = os.environ.get('DB_NAME')
+        self.db_name = os.environ.get("DB_NAME")
 
     def get_database(self):
         if self.db_name == "SQLite3":
             log_message("info", "database_manager", "using SQLite3 database")
-            from pokemonStats.main.data.poke_data.data_on_databases.pokemon_sqlite3 import pokemon_sqlite3
-            pokemon_sqlite3().setup_pokemon_database()
-            return pokemon_sqlite3()
+            from pokeDex.repository.impl.PokeDexSqlite3 import PokeDexSqlite3
+            PokeDexSqlite3().setup_pokemon_database()
+            return PokeDexSqlite3()
 
         if self.db_name == "MYSQL":
             print("아직 지원 준비중 ..ㅠ")
@@ -23,4 +23,4 @@ class database_manager:
 ## TEST
 
 if __name__ == "__main__":
-    database_manager().get_database()
+    DataBaseSelector().get_database()

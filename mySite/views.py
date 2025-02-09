@@ -3,7 +3,8 @@ import requests
 
 def pokemon_list(request):
     api_url = "http://localhost:8000/api/pokemons/list/number/"
-    response = requests.get(api_url)  # API 호출
+    response = requests.get(api_url)  # API 호출 -> {id: stats}
     pokemons = response.json() if response.status_code == 200 else []
 
-    return render(request, 'pokemon_list.html', {"pokemons": pokemons})
+
+    return render(request, 'pokeDex.html', {"pokemons": pokemons})
