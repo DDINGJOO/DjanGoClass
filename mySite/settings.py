@@ -23,7 +23,7 @@ sys.path.append(os.path.join(BASE_DIR, "pokeDex"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'pokeDex/main/pokemon.db'),
+        'NAME': os.path.join(BASE_DIR, 'pokeDex/repository/impl/pokeDex.db'),
     }
 }
 

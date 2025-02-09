@@ -1,11 +1,12 @@
 
 from django.urls import path
-from .views import PokemonInsertView, PokemonByIdView, PokemonByNameView, PokemonListView
+from .views import PokeDexInsertView, PokeDexByIdView, PokeDexBySortByNameView, PokeDexListView, PokeDexByNameView
 
 urlpatterns = [
-    path('pokemons/insert/until/<int:number>', PokemonInsertView.as_view()),
-    path('pokemons/<int:number>/', PokemonByIdView.as_view()),
-    path('pokemons/name/<str:name>/', PokemonByNameView.as_view()),
-    path('pokemons/list/<str:order>/', PokemonListView.as_view()),
+    path('pokedex/insert/until/<int:number>', PokeDexInsertView.as_view()),
+    path('pokedex/name/<str:name>/', PokeDexByNameView.as_view()),
+    path('pokedex/number/<int:number>/', PokeDexByIdView.as_view()),
+    path('pokedex/name/<str:name>/', PokeDexBySortByNameView.as_view()),
+    path('pokedex/list/<str:order>/', PokeDexListView.as_view()),
 ]
 

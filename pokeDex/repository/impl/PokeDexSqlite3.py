@@ -1,8 +1,12 @@
+import sys
+
+import pokeDex
+from pokeDex import repository
 from pokeDex.repository.poke_dex_interface import PokeDexDatabaseInterface
 import sqlite3
 import os
-
-
+PATH = os.path.dirname(os.path.abspath(__file__))
+DB_NAME = os.path.join(PATH,"pokeDex.db")
 
 
 class PokeDexSqlite3(PokeDexDatabaseInterface):
@@ -11,7 +15,7 @@ class PokeDexSqlite3(PokeDexDatabaseInterface):
         super().__init__()
 
 
-        self.DB_PATH = os.getenv("POKEMON_DB_PATH", "default.db")
+        self.DB_PATH =  DB_NAME
         self.COMMANDS = {
             "create_pokemon_table_query": """
                 CREATE TABLE IF NOT EXISTS pokemon (
