@@ -6,3 +6,6 @@ __pycache__
 /staticfiles
 /mediafiles
 .DS_Store
+/pokeDexImages/images
+/pokeDexImages/repository/impl/pokeDexImage.db
+/pokeDex/repository/impl/pokeDex.db
