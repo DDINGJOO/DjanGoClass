@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 도감</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>포켓몬 도감</h1>
+
+    {% for pokemon in pokemons %}
+        <div class="pokemon-card">
+            {% if pokemon.image_base64 %}
+                <img src="data:image/png;base64,{{ pokemon.image_base64 }}" alt="{{ pokemon.name }}">
+            {% else %}
+                <p>이미지를 불러올 수 없습니다.</p>
+            {% endif %}
+
+            <h2>{{ pokemon.name }} (#{{ pokemon.id }})</h2>
+            <ul>
+                <li><strong>HP:</strong> {{ pokemon.hp }}</li>
+                <li><strong>Attack:</strong> {{ pokemon.attack }}</li>
+                <li><strong>Defense:</strong> {{ pokemon.defense }}</li>
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

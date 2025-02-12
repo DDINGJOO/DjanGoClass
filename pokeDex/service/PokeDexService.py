@@ -2,7 +2,7 @@ from pprint import pprint
 
 from common.loggingManeger.logConfig import log_message
 from pokeDex.entity.Pokemon import Pokemon, Pokemons
-from common.database.database_selector import DataBaseSelector
+from pokeDex.config.database_selector import DataBaseSelector
 
 
 
@@ -60,16 +60,10 @@ class PokeDexService:
 if __name__ == '__main__':
     poke_service = PokeDexService()
     # poke_service.insert_pokemons_by_number_until_number(122222221)
-    pokemon = poke_service.get_pokemon_by_id(1)
+    pokemon = poke_service.insert_pokemons_by_number_until_number(20)
     print(pokemon)
     print(poke_service.get_pokemon_by_name("bulbasaur"))
     pprint(poke_service.get_pokemons_by_number_ASC())
     pprint(poke_service.get_pokemons_by_name_ASC())
 
     # pokemon = poke_service.insert_pokemons_by_number_until_number(10)
-
-
-
-
-
-

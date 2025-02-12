@@ -5,7 +5,7 @@ from pokeDex.service.PokeDexService import PokeDexService  # 기존 서비스 �
 
 ## TODO : Using Cache!
 class PokeDexInsertView(APIView):
-    def post(self, request,number):
+    def get(self, request,number):
         number = request.data.get("number", number)  # 기본값 10개 추가
         service = PokeDexService()
         service.insert_pokemons_by_number_until_number(number)
