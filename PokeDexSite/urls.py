@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/pokedeximage', include('pokeDexImages.controller.urls')),
     path('init/pokedex/init',PokedexInitView.as_view()),
 
-    path('pokedex/<str:numbers>/', pokedex_view, name='pokedex_view'),
+    path('pokedex/<int:number>', pokedex_view, name='pokedex_view'),
 
 
 

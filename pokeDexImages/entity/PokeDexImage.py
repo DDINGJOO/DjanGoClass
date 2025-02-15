@@ -37,7 +37,7 @@ class PokeDexImage:
         if response.status_code == 200:
             img = Image.open(BytesIO(response.content))
             img.save(self.image_path)
-            print(f"✅ 이미지가 저장됨: {self.image_path}")
+            print(f"이미지가 저장됨: {self.image_path}")
         else:
             print(f"이미지를 가져오는 데 실패했습니다. HTTP 상태 코드: {response.status_code}")
 
