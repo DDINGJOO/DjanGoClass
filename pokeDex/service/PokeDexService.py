@@ -19,6 +19,11 @@ class PokeDexService:
         return self.db_manager.insert_pokemons_data(pokemons.get_all_pokemons())
 
 
+    def insert_pokemon_by_number(self, number):
+        pokemon = Pokemon(number).info_pokemon()
+        log_message("info","poke_service.insert_Pokemon",f"Inserted {number} Pokemon")
+        return self.db_manager.insert_pokemon(pokemon)
+
     def get_pokemon_by_id(self, id):
         raw_pokemon = self.db_manager.fetch_pokemon_by_number(id)
         return self.execute_dict(raw_pokemon)
@@ -60,10 +65,13 @@ class PokeDexService:
 if __name__ == '__main__':
     poke_service = PokeDexService()
     # poke_service.insert_pokemons_by_number_until_number(122222221)
-    pokemon = poke_service.insert_pokemons_by_number_until_number(20)
-    print(pokemon)
-    print(poke_service.get_pokemon_by_name("bulbasaur"))
-    pprint(poke_service.get_pokemons_by_number_ASC())
-    pprint(poke_service.get_pokemons_by_name_ASC())
-
+    # pokemon = poke_service.insert_pokemons_by_number_until_number(20)
+    # print(pokemon)
+    # print(poke_service.get_pokemon_by_name("bulbasaur"))
+    # pprint(poke_service.get_pokemons_by_number_ASC())
+    # pprint(poke_service.get_pokemons_by_name_ASC())
     # pokemon = poke_service.insert_pokemons_by_number_until_number(10)
+
+
+    poke_service.insert_pokemon_by_number(1)
+    print(poke_service.get_pokemon_by_id(1))

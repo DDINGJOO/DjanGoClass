@@ -62,6 +62,13 @@ class PokeDexSqlite3(PokeDexDatabaseInterface):
                 [(p["Name"], p["Number"], p["Hp"], p["Attack"], p["Defense"]) for p in poke_list],
             )
             conn.commit()
+    def insert_pokemon(self, pokemon):
+        with sqlite3.connect(self.DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute(self.COMMANDS.get("insert_pokemons_data_query"),
+                           (pokemon["Name"], pokemon["Number"], pokemon["Hp"], pokemon["Attack"], pokemon["Defense"]))
+            conn.commit()
+
     def update_pokemon_data(self, number, hp, attack, defense):
         with sqlite3.connect(self.DB_PATH) as conn:
             cursor = conn.cursor()
@@ -128,14 +135,17 @@ if __name__ == "__main__":
         {"Name": "chArmAnder", "Number": 4, "Hp": 40, "Attack": 52, "Defense": 43},
     ]
 
+    pokemon = {"Name": "pikachu", "Number": 25, "Hp": 35, "Attack": 55, "Defense": 40}
 
-    database.insert_pokemons_data(pokemon_data)
     database.delete_pokemon_by_number(25)
+    database.insert_pokemon(pokemon)
     print(database.fetch_pokemon_by_number(25))
-    print(database.fetch_all_pokemons())
-    database.update_pokemon_data(25, 45, 60, 50)
-    print(database.fetch_pokemon_by_number(25))
-    database.delete_pokemon_by_number(7)
-    print(database.fetch_all_pokemons())
-    print(database.fetch_pokemon_by_name("Pikachu"))
-    print(database.fetch_pokemons_data_query_sorted())
+    # database.delete_pokemon_by_number(25)
+    # print(database.fetch_pokemon_by_number(25))
+    # print(database.fetch_all_pokemons())
+    # database.update_pokemon_data(25, 45, 60, 50)
+    # print(database.fetch_pokemon_by_number(25))
+    # database.delete_pokemon_by_number(7)
+    # print(database.fetch_all_pokemons())
+    # print(database.fetch_pokemon_by_name("Pikachu"))
+    # print(database.fetch_pokemons_data_query_sorted())

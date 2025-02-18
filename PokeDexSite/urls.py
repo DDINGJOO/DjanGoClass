@@ -21,10 +21,10 @@ from PokeDexSite.views import pokedex_view, PokedexInitView
 urlpatterns = [
     path('api/pokedex', include('pokeDex.controller.urls')),
     path('api/pokedeximage', include('pokeDexImages.controller.urls')),
-    path('init/pokedex/init',PokedexInitView.as_view()),
+    path('api/setup/pokedex/<int:number>',PokedexInitView.as_view()),
+
+
 
     path('pokedex/<int:number>', pokedex_view, name='pokedex_view'),
-
-
 
 ]

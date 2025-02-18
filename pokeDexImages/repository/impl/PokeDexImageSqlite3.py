@@ -53,6 +53,7 @@ if __name__ == "__main__":
 
     poke_dex_image_repository = PokeDexImageSqlite3()
     poke_dex_image_repository.setup_database()
+    poke_dex_image_repository.save(7)
     print(poke_dex_image_repository.find_by_id(7))
 
 

@@ -33,7 +33,10 @@ class PokeDexImage:
         if not os.path.exists(self.save_directory):
             os.makedirs(self.save_directory)  # 폴더 자동 생성
 
+
         response = requests.get(self.fetch_image())
+
+
         if response.status_code == 200:
             img = Image.open(BytesIO(response.content))
             img.save(self.image_path)
@@ -47,6 +50,7 @@ class PokeDexImage:
         else:
             print("저장된 이미지가 없습니다. 먼저 `save_image_on_localpath()`를 실행하세요.")
 
+
     def delete_image(self):
         if os.path.exists(self.image_path):  # `self.image_path`가 `None`이 아닌지 확인
             os.remove(self.image_path)
@@ -56,7 +60,6 @@ class PokeDexImage:
 
 if __name__ == "__main__":
     pokeimage = PokeDexImage(7)
-
     pokeimage.download_image()
 
-    pokeimage.delete_image()
+    #pokeimage.delete_image()

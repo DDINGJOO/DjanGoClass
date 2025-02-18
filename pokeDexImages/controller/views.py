@@ -18,8 +18,7 @@ class PokeDexImagePostView(APIView):
 
 class PokeDexImageDeleteView(APIView):
     def get(self, request, number):
-        service = PokeDexImageService()
-        service.delete_pokemon_image_by_id(int(number))
+        PokeDexImageService().delete_pokemon_image_by_id(int(number))
         return Response(status=204)
 
 class PokeDexImagesView(APIView):

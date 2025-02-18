@@ -5,7 +5,6 @@ from django.shortcuts import render, resolve_url
 from django.http import JsonResponse
 from rest_framework.views import APIView
 
-
 def pokedex_view(request, number): # URL에서 받은 번호 목록을 리스트로 변환
     pokemons = []
 
@@ -14,18 +13,17 @@ def pokedex_view(request, number): # URL에서 받은 번호 목록을 리스트
         # 포켓몬 기본 정보 가져오기
         pokedex_url = f"http://127.0.0.1:8000/api/pokedex/get/number/{i}"
         response = requests.get(pokedex_url)
+        image_url = f"http://127.0.0.1:8000/api/pokedeximage/get/number/{i}"
+        image_response = requests.get(image_url)
 
         if response.status_code != 200:
             continue  # API 응답 실패하면 건너뛰기
-
         try:
             pokedex_response = response.json()
         except requests.exceptions.JSONDecodeError:
             continue  # JSON 파싱 실패하면 건너뛰기
 
         # 포켓몬 이미지 가져오기
-        image_url = f"http://127.0.0.1:8000/api/pokedeximage/get/number/{number}"
-        image_response = requests.get(image_url)
 
         image_base64 = ""
         if image_response.status_code == 200:
@@ -55,8 +53,8 @@ def pokedex_view(request, number): # URL에서 받은 번호 목록을 리스트
 
 
 class PokedexInitView(APIView):
-    def get(self,request):
-        initStats = f"http://127.0.0.1:8000/api/pokedex/post/number/152"
+    def get(self,request,number):
+        initStats = f"http://127.0.0.1:8000/api/pokedex/post/number/{number+1}"
         requests.get(initStats)
         for i in range(1, 152):
             initImages = f"http://127.0.0.1:8000/api/pokedeximage/post/number/{i}"

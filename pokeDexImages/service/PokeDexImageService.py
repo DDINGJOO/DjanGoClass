@@ -14,8 +14,6 @@ class PokeDexImageService:
         pokemon = PokeDexImage(poke_id)
         self.db_manager.save(pokemon.pokemon_id)
 
-
-
 ##TODO : DATA SERIALIZATION & DESERIALIZATION
     def get_pokemon_image_by_id(self, poke_id):
         return self._format_data(self.db_manager.find_by_id(poke_id))
@@ -42,4 +40,7 @@ if __name__ == "__main__":
     service = PokeDexImageService()
     for i in range(1, 20):
         service.set_pokemon_image_by_id(i)
+
+    print(service.get_pokemons_images())
+    service.delete_pokemon_image_by_id(1)
 
