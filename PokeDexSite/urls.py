@@ -21,6 +21,8 @@ from PokeDexSite.views import pokedex_view, PokedexInitView
 urlpatterns = [
     path('api/pokedex', include('pokeDex.controller.urls')),
     path('api/pokedeximage', include('pokeDexImages.controller.urls')),
+
+    path('api', include('comment.urls')),
     path('api/setup/pokedex/<int:number>',PokedexInitView.as_view()),
 
 
