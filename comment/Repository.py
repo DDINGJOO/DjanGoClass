@@ -12,6 +12,7 @@ class CommentRepository:
     def find_all(article_id, offset, limit):
         return Comment.objects.filter(article_id=article_id).order_by('parent_comment_id', 'comment_id')[offset:offset+limit]
 
+
     @staticmethod
     def find_all_infinite_scroll(article_id, last_parent_comment_id=None, last_comment_id=None, limit=10):
         query = Comment.objects.filter(article_id=article_id).order_by('parent_comment_id', 'comment_id')

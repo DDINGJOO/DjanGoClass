@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from .models import Comment, ArticleCommentCount
 from comment.Repository import CommentRepository, ArticleCommentCountRepository
-from .serializers import CommentResponseSerializer
+from .serializers import CommentResponse
 from django.db import transaction
 
 
@@ -12,18 +12,18 @@ class CommentService:
     def create(data):
         parent = CommentService.find_parent(data)
         comment = Comment.objects.create(
-            content=data['content'],
+            comment=data['content'],
             parent_comment_id=parent.comment_id if parent else None,
             article_id=data['article_id'],
             writer_id=data['writer_id']
         )
         ArticleCommentCountRepository.increase(data['article_id'])
-        return CommentResponseSerializer(comment).data
+        return CommentResponse(comment).data
 
     @staticmethod
     def read(comment_id):
         comment = get_object_or_404(Comment, pk=comment_id)
-        return CommentResponseSerializer(comment).data
+        return CommentResponse(comment).data
 
     @staticmethod
     def read_all(article_id, page, page_size):
@@ -31,7 +31,7 @@ class CommentService:
         comments = CommentRepository.find_all(article_id, offset, page_size)
         total_count = CommentRepository.count_by(article_id, None, page_size)
         return {
-            "comments": CommentResponseSerializer(comments, many=True).data,
+            "comments": CommentResponse(comments, many=True).data,
             "comment_count": total_count
         }
 

@@ -47,6 +47,10 @@ class TestCommentDeleteAPI:
         self.comment.delete()
         assert not Comment.objects.filter(comment_id=self.comment.comment_id).exists()
 
+
+
+
+
     def test_cascade_delete_comment(self):
         """Cascade Delete 테스트: 부모 댓글 삭제 시 자식 댓글이 삭제되는지 확인"""
         url = reverse("manage_comment", args=[self.comment.comment_id])

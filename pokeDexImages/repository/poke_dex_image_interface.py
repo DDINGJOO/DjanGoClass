@@ -8,8 +8,6 @@ class PokeDexImageDataBaseInterface:
     def find_by_id(self, pokemon_id):
         pass
 
-
-
     def delete_image(self, pokemon_id):
         pass
 
@@ -18,7 +16,6 @@ class PokeDexImageDataBaseInterface:
 
     def get_all_pokemon_ids(self):
         pass
-
 
     def get_pokemon_image_path(self, pokemon_id):
         pass

@@ -2,13 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .services import CommentService
-from .serializers import CommentCreateRequestSerializer
-
+from .serializers import CommentCreateRequest
 
 class CommentView(APIView):
 
     def post(self, request):
-        serializer = CommentCreateRequestSerializer(data=request.data)
+        serializer = CommentCreateRequest(data=request.data)
         if serializer.is_valid():
             response_data = CommentService.create(serializer.validated_data)
             return Response(response_data, status=status.HTTP_201_CREATED)

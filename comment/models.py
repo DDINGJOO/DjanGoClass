@@ -17,8 +17,9 @@ class Comment(models.Model):
     parent_comment_id = models.BigIntegerField(null=True, blank=True)
     article_id = models.BigIntegerField()
     writer_id = models.BigIntegerField()
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False) ## 논리적 제거
     created_at = models.DateTimeField(default=now)
+
 
     @classmethod
     def create(cls, content, parent_comment_id, article_id, writer_id):

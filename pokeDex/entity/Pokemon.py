@@ -1,6 +1,5 @@
 import requests
 from dotenv import load_dotenv
-
 from common.loggingManeger.logConfig import log_message
 import os
 
